@@ -43,7 +43,11 @@ export class FrenchCardsService {
   }
 
   async create(data: CreateDeckDto): Promise<DeckDto> {
-    const deck = CardDeckFactory.create(data.type, data.shuffled, new FrenchCardRanks());
+    const deck = CardDeckFactory.create(
+      data.type,
+      data.shuffled,
+      new FrenchCardRanks(),
+    );
 
     const entity = await DeckEntity.create({
       type: data.type,

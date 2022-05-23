@@ -4,6 +4,6 @@ import { FrenchCardsService } from './french-cards.service';
 
 @Module({
   controllers: [FrenchCardsController],
-  providers: [FrenchCardsService]
+  providers: [FrenchCardsService],
 })
 export class FrenchCardsModule {}

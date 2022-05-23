@@ -1,6 +1,5 @@
 import { Card } from './card';
 import { ICard } from './models/card.interface';
-import { EDeckType } from './models/deck-type.enum';
 import { IDeck } from './models/deck.interface';
 import { ERank } from './models/rank.enum';
 import { ESuit } from './models/suit.enum';

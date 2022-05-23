@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Put,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CreateDeckDto } from './dto/create-deck.dto';
 import { ModifyDeckDto } from './dto/modify-deck.dto';
 import { DeckDto } from './dto/deck.dto';
@@ -22,7 +32,10 @@ export class FrenchCardsController {
   }
 
   @Put('/:id')
-  modifyDeck(@Param('id', new ParseUUIDPipe()) id, @Body() data: ModifyDeckDto): Promise<CardsDto> {
+  modifyDeck(
+    @Param('id', new ParseUUIDPipe()) id,
+    @Body() data: ModifyDeckDto,
+  ): Promise<CardsDto> {
     return this.service.modifyDeck(id, data);
   }
 }

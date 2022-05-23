@@ -1,3 +1,4 @@
 export enum EDeckType {
-  FULL = 'FULL', SHORT = 'SHORT'
+  FULL = 'FULL',
+  SHORT = 'SHORT',
 }
