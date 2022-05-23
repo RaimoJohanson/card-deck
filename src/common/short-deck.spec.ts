@@ -1,17 +1,21 @@
+import { FrenchCardRanks } from './ranks/french-ranks';
 import { ShortDeck } from './short-deck';
 
 describe('Short deck', () => {
   it('should create short unshuffled deck', () => {
-    const deck = new ShortDeck(false);
+    const deck = new ShortDeck(new FrenchCardRanks());
 
-    expect(deck.shuffled).toEqual(false);
-    expect(deck.count).toEqual(32);
+    expect(deck.cards.length).toEqual(32);
+    expect(deck.cards[0].code).toEqual('AS');
   });
 
   it('should create short shuffled deck', () => {
-    const deck = new ShortDeck(true);
+    const deck = new ShortDeck(new FrenchCardRanks());
 
-    expect(deck.shuffled).toEqual(true);
-    expect(deck.count).toEqual(32);
+    const initialFirstCardCode = deck.cards[0].code;
+    deck.shuffle();
+
+    expect(deck.cards.length).toEqual(32);
+    expect(deck.cards[0].code).not.toEqual(initialFirstCardCode);
   });
 });

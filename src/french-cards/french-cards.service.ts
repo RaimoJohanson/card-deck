@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { FrenchCardRanks } from '../common/ranks/french-ranks';
 import { CardDeckFactory } from '../common/card-deck.factory';
 import { CardsDto } from './dto/cards.dto';
 import { CreateDeckDto } from './dto/create-deck.dto';
@@ -42,11 +43,11 @@ export class FrenchCardsService {
   }
 
   async create(data: CreateDeckDto): Promise<DeckDto> {
-    const deck = CardDeckFactory.create(data.type, data.shuffled);
+    const deck = CardDeckFactory.create(data.type, data.shuffled, new FrenchCardRanks());
 
     const entity = await DeckEntity.create({
-      type: deck.type,
-      shuffled: deck.shuffled,
+      type: data.type,
+      shuffled: data.shuffled,
       cards: deck.cards,
     }).save();
 

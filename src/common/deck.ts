@@ -6,20 +6,10 @@ import { ERank } from './models/rank.enum';
 import { ESuit } from './models/suit.enum';
 
 export abstract class Deck implements IDeck {
-  readonly type: EDeckType;
-  readonly shuffled: boolean;
   cards: ICard[] = [];
 
-  get count() {
-    return this.cards.length;
-  }
-
-  constructor(ranks: ERank[], shuffled: boolean = false) {
-    this.shuffled = shuffled;
+  constructor(ranks: ERank[]) {
     this.populate(ranks);
-    if (this.shuffled) {
-      this.shuffle();
-    }
   }
 
   private populate(ranks: ERank[]) {
@@ -30,7 +20,7 @@ export abstract class Deck implements IDeck {
     }
   }
 
-  shuffle() {
+  shuffle(): IDeck {
     const cards = this.cards;
     const length = this.cards.length;
     if (length < 2) {
@@ -40,5 +30,6 @@ export abstract class Deck implements IDeck {
       const n = Math.floor(Math.random() * i);
       [cards[i - 1], cards[n]] = [cards[n], cards[i - 1]];
     }
+    return this;
   }
 }
